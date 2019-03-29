@@ -1,5 +1,7 @@
 <?php
 
+//use Symfony\Component\Routing\Annotation\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,3 +15,7 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/test','PostController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
