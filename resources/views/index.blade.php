@@ -24,6 +24,7 @@
                         <h3 class="mb-0">Featured Post</h3>
                       <div class="mb-1 text-muted">{{$post->created_at->format('d m Y')}}</div>
                       <p class="card-text mb-auto">{{Str::limit($post->body,60)}}</p>
+                      <a href="" class="stretched-link">Continue reading</a>
                         <div class="col-auto d-none d-lg-block">
                       <!-- place of image-->
                             
