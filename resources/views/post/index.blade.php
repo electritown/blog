@@ -21,13 +21,11 @@
                       <strong class="d-inline-block mb-2 text-primary">{{$post->title}}</strong>
                         <div>
                         <h3 class="mb-0">Featured Post</h3>
-                        <a href="" class="btn btn-primary">Edit</a>
-                        <a href="" class="btn btn-danger">Delete</a>
                         </div>
                       <div class="mb-1 text-muted">{{$post->created_at->format('d m Y')}}</div>
                       <p class="card-text mb-auto">{{Str::limit($post->body,60)}}</p>
                         <div class="col-auto d-none d-lg-block">
-                        <a href="post/{{$post->id}}" class="stretched-link">Continue reading</a>
+                        <a href="post/{{$post->id}}" class="btn btn-success">Continue reading</a>
                       <!-- place of image-->
                             
                         </div>

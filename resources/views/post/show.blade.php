@@ -2,11 +2,24 @@
 
 @section('content')
 <div class="blog-post">
+        <div>
         <h2 class="blog-post-title">{{$post->title}}</h2>
         <p class="mb-1 text-muted">{{$post->created_at->format('d m Y')}}</p>
+        </div>
+        <dev>
+        <a href="/post/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
+        </dev>
+        <dev >
+        <form action="/post/{{$post->id}}" method="post">
+          @csrf
+          @method('delete')
+        <button name="submit"  class="btn btn-danger" > Delete</button>
+        </form>
+      </dev>
+        
         <hr>
 
-        <pre class="">{{$post->body}}</pre>
+        <pre>{{$post->body}}</pre>
       </div><!-- /.blog-post -->
       <hr>
       @include('post.commentsDisplay', ['comments'=> $post->comments, 'post_id'=> $post->id])
@@ -23,3 +36,5 @@
                     </form>
 
 @endsection
+
+<!--        <a href="/post/{{$post->id}}" class="btn btn-danger">Delete</a> -->
