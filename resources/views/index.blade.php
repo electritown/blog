@@ -15,6 +15,7 @@
 
         <div class="container">
           <div class="row">
+            @if(count($posts)>0)
             @foreach ($posts as $post)
               <div class="col-6">
                   <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -32,6 +33,7 @@
 
               </div>
             @endforeach
+            @endif
           </div>   
         </div>
     
