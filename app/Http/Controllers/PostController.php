@@ -26,8 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
-    }
+        return view('createpost');    }
 
     /**
      * Store a newly created resource in storage.
@@ -37,8 +36,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'title'=>'required',
+            'body'=>'required',
+        ]);
+    
+        Post::create($request->all());
+    
+        return redirect()->route('index');    }
 
     /**
      * Display the specified resource.
@@ -48,8 +53,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
-    }
+        $post = Post::find($id);
+        return view('showpost')->with('posts',$post);    }
 
     /**
      * Show the form for editing the specified resource.
