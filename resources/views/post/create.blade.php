@@ -1,5 +1,11 @@
 @extends('layouts.app')
+<script type="text/javascript" src='https://cloud.tinymce.com/5/tinymce.min.js'></script>
 
+<script>
+        tinymce.init({
+        selector:'textarea'
+        });
+        </script>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,8 +20,8 @@
                             <input type="text" name="title" class="form-control" required/>
                         </div>
                         <div class="form-group">
-                            <label class="label">Post Body: </label>
-                            <textarea name="body" rows="10" cols="30" class="form-control" required></textarea>
+                            <label class="label">Post Body:</label>
+                            <textarea name="body" rows="10" cols="30" class="form-control" required>Body</textarea>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-success" />

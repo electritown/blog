@@ -5,9 +5,10 @@
         <h2 class="blog-post-title">{{$post->title}}</h2>
         <p class="mb-1 text-muted">{{$post->created_at->format('d m Y')}}</p>
         <hr>
-
-        <pre class="">{{$post->body}}</pre>
-      </div><!-- /.blog-post -->
+        <div>
+        {!!$post->body!!}
+    </div>
+    </div><!-- /.blog-post -->
       <hr>
       @include('post.commentsDisplay', ['comments'=> $post->comments, 'post_id'=> $post->id])
       <h4>Add comment</h4>
