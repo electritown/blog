@@ -10,19 +10,40 @@
         <div class="col-md-6">
             {!!$post->body!!}
         </div>
-    </div><!-- /.blog-post -->
+    <!-- /.blog-post -->
+<div class="button-box col-lg-12">
+
+
+        <form action="/post/{{$post->id}}" method="post">
+            <a href="/post/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
+
+          @csrf
+          @method('delete') 
+        <button name="submit"  class="btn btn-danger"> Delete</button>
+        </form>
+    </div>
+
+        
+      <br>
+      <h2>Comments:</h2>
       <hr>
       @include('post.commentsDisplay', ['comments'=> $post->comments, 'post_id'=> $post->id])
+      <div class="container">
       <h4>Add comment</h4>
       <form method="post" action="{{ route('comments.store') }}">
                         @csrf
+
                         <div class="form-group">
-                            <textarea rows="5" class="form-control rounded-0" name="body"></textarea>
+                            <textarea rows="6" class="form-group" name="body"></textarea>
                             <input type="hidden" name="post_id" value="{{ $post->id }}" />
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-success" value="Add Comment" />
+                            <input type="submit" class="btn btn-outline-primary" value="Add Comment" />
                         </div>
+                       
                     </form>
                 </div>
+            </div>
 @endsection
+
+

@@ -26,7 +26,7 @@
                         <div>
                         <h3 class="mb-0">TAGS IN FUTURE</h3>
                         </div>
-                      <div class="mb-1 text-muted">{{$post->created_at->format('d M  Y')}}</div>
+                      <div class="mb-1 text-muted">{{$post->created_at->format('d M Y')}}</div>
                       <p class="card-text mb-auto">{{substr(strip_tags($post->body),0,300)}}{{strlen($post->body)>300?"...":""}}</p>
                         <div class="col-auto d-none d-lg-block">
                         <a href="post/{{$post->id}}" class="stretched-link">Continue reading</a>
