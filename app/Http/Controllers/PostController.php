@@ -15,8 +15,8 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts=Post::all();
-        return view('index')->with('posts',$posts);
+        $posts=Post::orderBy('created_at','desc')->get();
+        return view('post.index')->with('posts',$posts);
     }
 
     /**
@@ -24,9 +24,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('createpost');    }
+        
+
+           
+        
+        return view('post.create');
+  }
 
     /**
      * Store a newly created resource in storage.
@@ -40,21 +45,25 @@ class PostController extends Controller
             'title'=>'required',
             'body'=>'required',
         ]);
-    
-        Post::create($request->all());
-    
-        return redirect()->route('index');    }
-
+        $post = new Post([
+            'title'=>$request->get('title'),
+            'body'=>$request->get('body')]);    
+            
+            $post->save();
+            return redirect('/');
+}
     /**
      * Display the specified resource.
      *
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
         $post = Post::find($id);
-        return view('showpost')->with('posts',$post);    }
+
+        return view('post.show')->with('post',$post);
+    }
 
     /**
      * Show the form for editing the specified resource.
