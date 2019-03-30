@@ -14,8 +14,12 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
-Route::get('/test','PostController@index');
+Route::get('/', 'PostController@index');
+//Route::get('/test','PostController@index');
 Auth::routes();
-
+Route::resource('post',"PostController");
+/*route::get('createpost','postController@create');
+route::post('createpost','postController@create');
+*/
+Route::resource('comments','CommentController');
 Route::get('/home', 'HomeController@index')->name('home');
