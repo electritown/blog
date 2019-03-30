@@ -12,7 +12,7 @@
         <dev >
         <form action="/post/{{$post->id}}" method="post">
           @csrf
-          @method('delete')
+          @method('delete') 
         <button name="submit"  class="btn btn-danger" > Delete</button>
         </form>
       </dev>
