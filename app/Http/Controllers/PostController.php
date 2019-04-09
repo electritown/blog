@@ -45,10 +45,14 @@ class PostController extends Controller
             'title'=>'required',
             'body'=>'required',
         ]);
+        $id = \Auth::user()->id;
+
         $post = new Post([
             'title'=>$request->get('title'),
-            'body'=>$request->get('body')]);    
-            
+            'body'=>$request->get('body'),
+            'user_id'=>$id,
+            ]);    
+
             $post->save();
             return redirect('/');
 }

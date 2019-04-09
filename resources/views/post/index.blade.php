@@ -24,7 +24,7 @@
                       <div class="col p-4 d-flex flex-column position-static">
                       <strong class="d-inline-block mb-2 text-primary">{{$post->title}}</strong>
                         <div>
-                        <h3 class="mb-0">TAGS IN FUTURE</h3>
+                        <h3 class="mb-0">{{$post->user->name}}</h3>
                         </div>
                       <div class="mb-1 text-muted">{{$post->created_at->format('d M Y')}}</div>
                       <p class="card-text mb-auto">{{substr(strip_tags($post->body),0,300)}}{{strlen($post->body)>300?"...":""}}</p>

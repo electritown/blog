@@ -5,6 +5,8 @@
         
     <div class="col-md-8"> <h2 class="blog-post-title">{{$post->title}}</h2>
         <p class="mb-1 text-muted">{{$post->created_at->format('d M Y')}}</p>
+        <p class="mb-1 text-muted">Auther: {{$post->user->name}}</p>
+
     </div>
         <hr>
         <div class="col-md-6">
@@ -28,6 +30,8 @@
       <h2>Comments:</h2>
       <hr>
       @include('post.commentsDisplay', ['comments'=> $post->comments, 'post_id'=> $post->id])
+      <hr />
+      @if (Auth::check())
       <div class="container">
       <h4>Add comment</h4>
       <form method="post" action="{{ route('comments.store') }}">
@@ -43,6 +47,7 @@
                        
                     </form>
                 </div>
+                @endif
             </div>
 @endsection
 

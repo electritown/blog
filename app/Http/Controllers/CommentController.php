@@ -40,7 +40,8 @@ class CommentController extends Controller
             'body'=>'required',
         ]);
         $input=$request->all();
-        
+        $input['user_id'] = auth()->user()->id;
+
         Comment::create($input);
         return back();
     }
