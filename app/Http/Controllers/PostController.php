@@ -18,6 +18,10 @@ class PostController extends Controller
         $posts=Post::orderBy('created_at','desc')->get();
         return view('post.index')->with('posts',$posts);
     }
+    public function postedPosts(){
+        $posts=Post::where('isposted','=',1)->orderBy('created_at','desc')->get();
+        return view('admin.posts.posted')->with('posts',$posts);
+    }
 
     /**
      * Show the form for creating a new resource.
