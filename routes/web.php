@@ -15,6 +15,8 @@
 */
 
 Route::get('/', 'PostController@index');
+
+Route::resource('tag', 'TagController');
 //Route::get('/test','PostController@index');
 Auth::routes();
 Route::resource('post',"PostController");
