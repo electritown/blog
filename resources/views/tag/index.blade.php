@@ -27,7 +27,8 @@
                       <div>
                         <strong class="d-inline-block mb-2 text-primary">Tag: {{$tag->id}}</strong>
                         <div>
-                        <h3 class="mb-0">{{$tag->name}}</h3>
+                          <a href="tag/{{$tag->id}}" class="stretched-link">{{$tag->name}}</a>
+                        
                         </div>
                       </div>
                         <div >

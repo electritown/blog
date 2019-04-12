@@ -61,7 +61,7 @@ class TagController extends Controller
     public function show($id)
     {
         $tag = Tag::find($id);
-        return view();
+        return view('tag.show')->withTag($tag);
     }
 
     /**
