@@ -20,7 +20,7 @@ Route::resource('tag', 'TagController');
 //Route::get('/test','PostController@index');
 Auth::routes();
 Route::resource('post',"PostController");
-Route::get('post/{post}/approve',"PostController@approve");
+Route::get('admin/post/{post}/approve',"PostController@approve");
 
 /*route::get('createpost','postController@create');
 route::post('createpost','postController@create');
@@ -31,6 +31,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         return view('admin.index');
     });
     Route::get('/admin/postedposts','PostController@postedPosts');
+    Route::get('/admin/pendingposts','PostController@pendingPosts');
 
 
 

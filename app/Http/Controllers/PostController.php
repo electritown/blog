@@ -23,7 +23,7 @@ class PostController extends Controller
         return view('admin.posts.posted')->with('posts',$posts);
     }
 
-    public function PendingPosts(){
+    public function pendingPosts(){
         $posts=Post::where('ispending','=',1)->orderBy('created_at','desc')->get();
         return view('admin.posts.pending')->with('posts',$posts);
     }
@@ -110,7 +110,6 @@ class PostController extends Controller
             $post->save();
             return redirect('/');
     }
-<<<<<<< HEAD
     public function approve($id)
     {
     
@@ -120,12 +119,9 @@ class PostController extends Controller
             'ispending'=>0,
             'isposted'=>1
         ]);
-        return redirect('/');
+        return redirect('/admin');
     }
     
-=======
-
->>>>>>> ffaf42a9dcb41f8f9280cb535e867586783fb00d
     /**
      * Remove the specified resource from storage.
      *
