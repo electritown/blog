@@ -60,7 +60,8 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+        $tag = Tag::find($id);
+        return view();
     }
 
     /**
@@ -71,7 +72,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::find($id);
+        return view('tag.edit')->withTag($tag);
     }
 
     /**
@@ -83,9 +85,12 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
-
+        $request->validate(['name'=>'required']);
+            $tag = Tag::find($id);
+            $tag->name = $request->input('name');
+            $tag->save(); 
+           return redirect('tag');
+        }
     /**
      * Remove the specified resource from storage.
      *
@@ -94,6 +99,7 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $tag = tag::find($id);
+        $tag->delete();
+        return redirect('tag');    }
 }

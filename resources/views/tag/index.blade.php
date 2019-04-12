@@ -24,10 +24,27 @@
               <div class="col-6">
                   <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-30 position-relative">
                       <div class="col p-2 d-flex flex-column position-static">
-                      <strong class="d-inline-block mb-2 text-primary">Tag: {{$tag->id}}</strong>
+                      <div>
+                        <strong class="d-inline-block mb-2 text-primary">Tag: {{$tag->id}}</strong>
                         <div>
                         <h3 class="mb-0">{{$tag->name}}</h3>
                         </div>
+                      </div>
+                        <div >
+                          
+                          
+                            
+
+                <form  action="{{route('tag.destroy' , $tag->id)}}" method="post">                  
+                           @csrf
+                           @method('delete')
+                           <a href="/tag/{{$tag->id}}/edit" class="btn btn-primary">Edit</a>
+                            <button name="submit"  class="btn btn-danger"> Delete</button>   
+                           </form>
+
+                        </div>
+
+
                     </div>
 
               </div>          
