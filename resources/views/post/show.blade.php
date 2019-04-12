@@ -13,8 +13,6 @@
             {!!$post->body!!}
         </div>
     <!-- /.blog-post -->
-    @if (Auth::check())
-
 <div class="button-box col-lg-12">
 
 
@@ -28,7 +26,7 @@
         </form>
     </div>
 
-     @endif   
+        
       <br>
       <h2>Comments:</h2>
       <hr>

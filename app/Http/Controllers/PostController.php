@@ -89,6 +89,7 @@ class PostController extends Controller
 
         return view('post.edit')->with('post',$post);
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -109,6 +110,7 @@ class PostController extends Controller
             $post->save();
             return redirect('/');
     }
+<<<<<<< HEAD
     public function approve($id)
     {
     
@@ -121,6 +123,9 @@ class PostController extends Controller
         return redirect('/');
     }
     
+=======
+
+>>>>>>> ffaf42a9dcb41f8f9280cb535e867586783fb00d
     /**
      * Remove the specified resource from storage.
      *
