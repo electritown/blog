@@ -23,6 +23,10 @@ class PostController extends Controller
         return view('admin.posts.posted')->with('posts',$posts);
     }
 
+    public function PendingPosts(){
+        $posts=Post::where('ispending','=',1)->orderBy('created_at','desc')->get();
+        return view('admin.posts.pending')->with('posts',$posts);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -116,6 +120,7 @@ class PostController extends Controller
         ]);
         return redirect('/');
     }
+    
     /**
      * Remove the specified resource from storage.
      *
