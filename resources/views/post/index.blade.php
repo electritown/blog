@@ -9,7 +9,9 @@
         <div class="col-md-6 px-0">
             <p class="lead my-3">To Add new post just press the key..."</p>
           </div>
+          @if(Auth::check())
     <a href="{{route('post.create')}}" class="btn btn-primary">Create Post</a>
+    @endif
     </div>
   </div>
 </div>
