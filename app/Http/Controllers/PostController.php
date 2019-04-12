@@ -85,6 +85,7 @@ class PostController extends Controller
 
         return view('post.edit')->with('post',$post);
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -105,17 +106,7 @@ class PostController extends Controller
             $post->save();
             return redirect('/');
     }
-    public function approve($id)
-    {
-    
-        Post::where([
-            'id'=>$id
-        ])->update([
-            'ispending'=>0,
-            'isposted'=>1
-        ]);
-        return redirect('/');
-    }
+
     /**
      * Remove the specified resource from storage.
      *
