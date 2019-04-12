@@ -15,9 +15,13 @@
 */
 
 Route::get('/', 'PostController@index');
+
+Route::resource('tag', 'TagController');
 //Route::get('/test','PostController@index');
 Auth::routes();
 Route::resource('post',"PostController");
+Route::get('post/{post}/approve',"PostController@approve");
+
 /*route::get('createpost','postController@create');
 route::post('createpost','postController@create');
 */

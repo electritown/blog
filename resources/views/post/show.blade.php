@@ -20,6 +20,7 @@
 
         <form action="/post/{{$post->id}}" method="post">
             <a href="/post/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
+            <a href="/post/{{$post->id}}/approve" class="btn btn-secondary">Approve</a>
 
           @csrf
           @method('delete') 
