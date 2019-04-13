@@ -27,7 +27,7 @@
                       <div>
                         <strong class="d-inline-block mb-2 text-primary">Tag: {{$tag->id}}</strong>
                         <div>
-                          <a href="tag/{{$tag->id}}" class="stretched-link">{{$tag->name}}</a>
+                          <h1 > {{$tag->name}} </h1>
                         
                         </div>
                       </div>
@@ -40,7 +40,9 @@
                            @csrf
                            @method('delete')
                            <a href="/tag/{{$tag->id}}/edit" class="btn btn-primary">Edit</a>
-                            <button name="submit"  class="btn btn-danger"> Delete</button>   
+                           
+                            <button name="submit"  class="btn btn-danger"> Delete</button>  
+                            <a href="tag/{{$tag->id}}" class="btn btn-primary">View  </a> 
                            </form>
 
                         </div>

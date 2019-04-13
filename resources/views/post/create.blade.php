@@ -23,6 +23,16 @@
                             <label class="label">Post Body:</label>
                             <textarea name="body" rows="10" cols="30" class="form-control" required>Body</textarea>
                         </div>
+
+                        <label class="label" name="tags">Tags:</label>
+                        <select  name="tag[]" multiple="multiple">
+                    @foreach($tags as $tag)
+                        <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
+                    @endforeach
+
+                </select>
+
+
                         <div class="form-group">
                             <input type="submit" class="btn btn-success"value="Create post" />
                         </div>

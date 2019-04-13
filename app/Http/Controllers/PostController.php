@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -37,8 +38,8 @@ class PostController extends Controller
         
 
            
-        
-        return view('post.create');
+        $tags = Tag::all();
+        return view('post.create')->withTags($tags);
   }
 
     /**
@@ -62,6 +63,12 @@ class PostController extends Controller
             ]);    
 
             $post->save();
+        
+        if (isset($request->tag)) {
+            $post->tags()->sync($request->tag);
+            } else {
+                $post->tags()->sync(array());
+            }
             return redirect('/');
 }
     /**
