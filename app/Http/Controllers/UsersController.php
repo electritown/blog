@@ -4,18 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use session;
-use App\Tag;
 
-class TagController extends Controller
+class UsersController extends Controller
 {
-    
-   /* public function __construct(){
-        $this->middleware('auth');
-    }*/
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -23,10 +14,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags=Tag::all();
-        return view('tag.index')->withTags($tags);    
+        $users=User::orderBy('created_at','desc')->get();
+        return view('user.index')->with('users',$users);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -35,8 +25,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('tag.create');
-        }
+        return view('user.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -46,11 +36,20 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name'=>'required']);
-        $tag = new Tag([ 'name'=>$request->get('name') ]);
-        $tag->save(); 
-        //session::flash('success' , 'new tag created'); 
-        return redirect()->route('tag.index');
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required'
+        ]);
+        $password = $request->password;
+    
+        $user=new User([
+            'name'=>$request->get('name'),
+            'email'=>$request->get('email'),
+            'password'=>bcrypt($password),
+        ]);
+        $user->save(); 
+        return redirect()->route('user.index');
     }
 
     /**
@@ -61,8 +60,8 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        $tag = Tag::find($id);
-        return view('tag.show')->withTag($tag);
+        $user = User::find($id);
+        return view('user.show')->with('user',$user);
     }
 
     /**
@@ -73,8 +72,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::find($id);
-        return view('tag.edit')->withTag($tag);
+        $user = User::find($id);
+        return view('user.edit')->with('user',$user);
     }
 
     /**
@@ -86,12 +85,20 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['name'=>'required']);
-            $tag = Tag::find($id);
-            $tag->name = $request->input('name');
-            $tag->save(); 
-           return redirect('tag');
-        }
+      
+        $request->validate
+        ([
+            'name'=>'required',
+            'email'=>'required'
+        ]);
+        
+        $user = User::find($id);
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');    
+            $user->save();
+            return redirect('/');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -100,7 +107,8 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        $tag = tag::find($id);
-        $tag->delete();
-        return redirect('tag');    }
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/');
+    }
 }
