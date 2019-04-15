@@ -9,13 +9,11 @@
 
     </div>
         <hr>
-        <div class="col-md-6">
+
+        <div style="overflow: both">
+          <div style="float: left; width: 50%">
             {!!$post->body!!}
-        </div>
-    <!-- /.blog-post -->
-<div class="button-box col-lg-12">
-
-
+          
         <form action="/post/{{$post->id}}" method="post">
             <a href="/post/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
             <a href="/post/{{$post->id}}/approve" class="btn btn-secondary">Approve</a>
@@ -24,7 +22,14 @@
           @method('delete') 
         <button name="submit"  class="btn btn-danger"> Delete</button>
         </form>
-    </div>
+        </div>
+        <div style="float: left; width: 50%">
+             <img style="border-radius: 10px; width: 100%" src="/storage/imagespost/{{$post->image}}">
+        </div>
+        </div>
+        <br>
+    <!-- /.blog-post -->
+
 
         
       <br>

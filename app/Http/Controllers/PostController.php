@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Tag;
+use image;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -53,14 +54,29 @@ class PostController extends Controller
         $request->validate([
             'title'=>'required',
             'body'=>'required',
+           // 'iamgespost'=>'image|nullable|max:1999'
         ]);
         $id = \Auth::user()->id;
 
-        $post = new Post([
-            'title'=>$request->get('title'),
-            'body'=>$request->get('body'),
-            'user_id'=>$id,
-            ]);    
+        $post = new Post;
+            $post->title = $request->title;
+            $post->body = $request->body;
+            $post->user_id = $id;
+
+            //return var_dump($request->has("imagespost"));
+        if($request->has('imagespost')){
+            	$image = $request->file('imagespost')->getClientOriginalName();
+            	//$filename = time() . '.' . $image->getClientOriginalExtension();
+            	$location = pathinfo($image, PATHINFO_FILENAME);
+            	$ext = $request->file('imagespost')->guessClientExtension();
+            	$filename = time().'.'.$ext;
+            	$path= $request->file('imagespost')->storeAs('public/imagespost', $filename );
+            	//Image::make($image)->save($location);
+            	//$post->image = $filename;
+            
+            }    
+            
+          $post->image = $filename;
 
             $post->save();
         

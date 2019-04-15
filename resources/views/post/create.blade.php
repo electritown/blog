@@ -1,11 +1,11 @@
 @extends('layouts.app')
-<script type="text/javascript" src='https://cloud.tinymce.com/5/tinymce.min.js'></script>
+<!--<script type="text/javascript" src='https://cloud.tinymce.com/5/tinymce.min.js'></script>
 
 <script>
         tinymce.init({
         selector:'textarea'
         });
-        </script>
+        </script> -->
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header">Create Post</div>
                 <div class="card-body">
-                    <form method="post" action="{{route('post.store')}}">
+                    <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
                         <div class="form-group">
                             @csrf
                             <label class="label">Post Title: </label>
@@ -24,6 +24,11 @@
                             <textarea name="body" rows="10" cols="30" class="form-control" required>Body</textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label class="label" name="imagespost">Upload Image:</label>
+                            <input name="imagespost" type="file">   
+                                                    </div>
+
                         <label class="label" name="tags">Tags:</label>
                         <select  name="tag[]" multiple="multiple">
                     @foreach($tags as $tag)
@@ -32,9 +37,9 @@
 
                 </select>
 
-
                         <div class="form-group">
-                            <input type="submit" class="btn btn-success"value="Create post" />
+                            <input type="submit" class="btn btn-success"value="Create post"></div>
+                        </form></div></div></div></div></div></
                         </div>
                     </form>
                 </div>
