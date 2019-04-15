@@ -21,6 +21,7 @@
           <div class="row">
             @if(count($posts)>0)
             @foreach ($posts as $post)
+            @if($post->isposted==1 & $post->ispending==0)
               <div class="col-6">
                   <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                       <div class="col p-4 d-flex flex-column position-static">
@@ -39,7 +40,7 @@
                     </div>
 
               </div>
-              
+              @endif
             @endforeach
             @endif
           </div>   
