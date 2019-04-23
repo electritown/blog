@@ -6,6 +6,7 @@ use App\Post;
 use App\Tag;
 use image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -28,6 +29,13 @@ class PostController extends Controller
     public function pendingPosts(){
         $posts=Post::where('ispending','=',1)->orderBy('created_at','desc')->get();
         return view('admin.posts.pending')->with('posts',$posts);
+    }
+    public function myPosts(Request $request){
+        $id=Auth::user()->id;
+        $posts=Post::where('user_id','=',$id)->orderBy('created_at','desc')->get();
+        return view('admin.posts.myposts')->with('posts',$posts);
+
+
     }
     /**
      * Show the form for creating a new resource.
@@ -144,6 +152,17 @@ class PostController extends Controller
         ]);
         return redirect('/admin');
     }
+    public function hide($id){
+
+        Post::where([
+            'id'=>$id
+        ])->update([
+            'ispending'=>1,
+            'isposted'=>0
+        ]);
+      return  redirect('/admin');
+
+    }
     
     /**
      * Remove the specified resource from storage.
@@ -155,6 +174,6 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect('/');
+        return redirect(Request::url());
     }
 }

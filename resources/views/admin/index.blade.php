@@ -52,7 +52,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{'/admin/myposts'}}">
+              <span data-feather="layers"></span>
+              My Posts
+            </a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="{{'/admin/tag'}}">
               <span data-feather="shopping-cart"></span>
               Tags
             </a>
