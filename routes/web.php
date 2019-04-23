@@ -34,4 +34,3 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/admin/pendingposts','PostController@pendingPosts');
     Route::get('/admin/tag','TagController@index');
 
-

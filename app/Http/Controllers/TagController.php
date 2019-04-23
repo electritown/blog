@@ -35,7 +35,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('tag.create');    }
+        return view('tag.create');
+        }
 
     /**
      * Store a newly created resource in storage.
