@@ -69,7 +69,7 @@ class PostController extends Controller
             } else {
                 $post->tags()->sync(array());
             }
-            return redirect('/');
+            return redirect('/admin');
 }
     /**
      * Display the specified resource.

@@ -7,26 +7,26 @@
           <thead>
             <tr>
                     <th>ID</th>
-                    <th>Post Name</th>
+                    <th>Tag Name</th>
                     <th>Created At</th>
                     <th>Edit Button</th>
                     <th>Delete Button</th>
-                    <th>View</th>
+                    <th>View All posts</th>
             </tr>
           
-        @if(count($posts)>0)
-        @foreach ($posts as $post)
+        @if(count($tags)>0)
+        @foreach ($tags as $tag)
                   <tr>
-                          <th>{{$post->id}}</th>
-                          <th>{{$post->title}}</th>
-                          <th>{{$post->created_at}}</th>
-                          <form  action="{{route('post.destroy' , $post->id)}}" method="post">                  
+                          <th>{{$tag->id}}</th>
+                          <th>{{$tag->title}}</th>
+                          <th>{{$tag->created_at}}</th>
+                          <form  action="{{route('tag.destroy' , $tag->id)}}" method="post">                  
                            @csrf
                            @method('delete')
-                           <th> <a href="/post/{{$post->id}}/edit" class="btn btn-primary">Edit</a> </th>
+                           <th> <a href="/post/{{$tag->id}}/edit" class="btn btn-primary">Edit</a> </th>
                            
                           <th>  <button name="submit"  class="btn btn-danger"> Delete</button> </th> 
-                           <th> <a href="post/{{$post->id}}" class="btn btn-primary">View  </a></th> 
+                           <th> <a href="post/{{$tag->id}}" class="btn btn-primary">View  </a></th> 
                            </form>
                   </tr>
                 
