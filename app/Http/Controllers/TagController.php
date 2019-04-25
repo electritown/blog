@@ -24,7 +24,11 @@ class TagController extends Controller
     public function index()
     {
         $tags=Tag::all();
+<<<<<<< HEAD
         return view('admin.tag.tag')->withTags($tags);    
+=======
+        return view('admin.tags.index')->withTags($tags);    
+>>>>>>> 7349a2c7925fb8078928170c8a82535281a701a8
     }
 
 

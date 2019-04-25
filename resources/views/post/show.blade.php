@@ -14,7 +14,7 @@
           <div style="float: left; width: 50%">
             {!!$post->body!!}
           
-        <form action="/post/{{$post->id}}" method="post">
+        {{-- <form action="/post/{{$post->id}}" method="post">
             <a href="/post/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
             <a href="/post/{{$post->id}}/approve" class="btn btn-secondary">Approve</a>
 
@@ -26,7 +26,7 @@
         <div style="float: left; width: 50%">
              <img style="border-radius: 10px; width: 100%" src="/storage/imagespost/{{$post->image}}">
         </div>
-        </div>
+        </div> --}}
         <br>
     <!-- /.blog-post -->
 

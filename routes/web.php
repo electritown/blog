@@ -17,10 +17,16 @@
 Route::get('/', 'PostController@index');
 
 Route::resource('tag', 'TagController');
+Route::resource('admin/tag', 'TagController');
+
 //Route::get('/test','PostController@index');
 Auth::routes();
+Route::resource('admin/post',"PostController");
 Route::resource('post',"PostController");
+
 Route::get('admin/post/{post}/approve',"PostController@approve");
+Route::get('admin/post/{post}/hide',"PostController@hide");
+
 
 /*route::get('createpost','postController@create');
 route::post('createpost','postController@create');
@@ -32,5 +38,10 @@ Route::get('/home', 'HomeController@index')->name('home');
     });
     Route::get('/admin/postedposts','PostController@postedPosts');
     Route::get('/admin/pendingposts','PostController@pendingPosts');
+<<<<<<< HEAD
     Route::get('/admin/tag','TagController@index');
+=======
+    Route::get('/admin/myposts','PostController@myPosts');
+
+>>>>>>> 7349a2c7925fb8078928170c8a82535281a701a8
 
