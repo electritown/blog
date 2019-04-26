@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/select2.js') }}" defer></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,7 +21,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{asset('css/styles.css')}}" rel="stylesheet">
-   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -102,4 +106,5 @@
 </div>
 </footer>
 </body>
+
 </html>
