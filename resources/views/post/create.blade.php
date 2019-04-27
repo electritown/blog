@@ -1,11 +1,13 @@
 @extends('layouts.app')
-<!--<script type="text/javascript" src='https://cloud.tinymce.com/5/tinymce.min.js'></script>
-
+<script type="text/javascript" src='https://cloud.tinymce.com/5/tinymce.min.js'></script>
 <script>
-        tinymce.init({
+    tinymce.init({
         selector:'textarea'
         });
-        </script> -->
+
+</script>
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -26,25 +28,33 @@
 
                         <div class="form-group">
                             <label class="label" name="imagespost">Upload Image:</label>
-                            <input name="imagespost" type="file">   
-                                                    </div>
-
-                        <label class="label" name="tags">Tags:</label>
-                        <select  name="tag[]" multiple="multiple">
+                            <input name="imagespost" type="file" class="form-control-file">
+                        </div>
+                        <div class="form-group">                        <label class="label" name="tags">Tags:</label>
+                        <select id="tag" class="form-control" name="tag[]" multiple="multiple">
                     @foreach($tags as $tag)
                         <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
                     @endforeach
 
                 </select>
+            </div>
 
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-success"value="Create post"></div>
-                        </form></div></div></div></div></div></
-                        </div>
+                <div class="form-group">   <input type="submit" class="btn btn-success" value="Create post"></div>
                     </form>
-                </div>
+
+             </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#tag').select2({
+            allowClear:true,
+            placeholder: 'Search for tags'
+        })
+      })
+
+</script>
 @endsection

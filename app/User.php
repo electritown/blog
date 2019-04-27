@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -42,27 +43,5 @@ class User extends Authenticatable
         return $this->belongToMany('App\Role', 'user_role', 'user_id', 'role_id');
     }
 
-    public function hasAnyRole($roles)
-    {
-        if(in_array($roles)) {
-            foreach($roles as $role) {
-                if ($this->hasRole($role)) {
-                    return true;
-                }
-            }
-        }
-        else {
-            if ($this->hasRole($roles)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public function hasRole($role)
-    {
-        if ($this->roles()->where('name', $role)->first()) {
-            return true;
-        }
-        return false;
-    }
+    
 }
