@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class HomeController extends Controller
 {
@@ -23,7 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+        $role= Role::create(['name'=>'admin']);
+        //$role= Role::create(['name'=>'reviewer']);
+        $role= Role::create(['name'=>'author']);
+        $permission =Permission::create(['name' => 'write post']);
+        $permission =Permission::create(['name' => 'edit post']);
+        $permission =Permission::create(['name' => 'publish post']);
+        $permission =Permission::create(['name' => 'delete post']);
+        $permission =Permission::create(['name' => 'add comment']);
+        //$role =Role::findById(1);
+        //$permission = permission::findById(1);
+        //$role->givePermissionTo($permission);
         return view('home');
     }
 }
