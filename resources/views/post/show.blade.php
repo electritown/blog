@@ -38,6 +38,7 @@
       @include('post.commentsDisplay', ['comments'=> $post->comments, 'post_id'=> $post->id])
       <hr />
       @if (Auth::check())
+      @role('admin|author')
       <div class="container">
       <h4>Add comment</h4>
       <form method="post" action="{{ route('comments.store') }}">
@@ -53,6 +54,7 @@
                        
                     </form>
                 </div>
+                @endrole
                 @endif
             </div>
 @endsection

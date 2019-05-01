@@ -37,7 +37,6 @@ Route::get('/home', 'HomeController@index')->name('home');
         return view('admin.index');
     });
     Route::get('/admin/postedposts','PostController@postedPosts');
-    Route::get('/admin/pendingposts','PostController@pendingPosts');
-    Route::get('/admin/myposts','PostController@myPosts');
-
+    Route::get('/admin/pendingposts','PostController@pendingPosts')->middleware('role:admin|reviewer');
+    Route::resource('/user','UsersController');
 

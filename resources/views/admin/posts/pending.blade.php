@@ -24,11 +24,14 @@
                           <form  action="{{route('post.destroy' , $post->id)}}" method="post">                  
                                 @csrf
                                 @method('delete')
-                                <th><button class="btn btn-danger" name="submit">Delete</button></th>
+                                @role('admin')
+                                   <th><button class="btn btn-danger" name="submit">Delete</button></th>
+                                @endrole
                         </form>
                         <th><a class="btn btn-primary" href="post/{{$post->id}}">Show</a></th>
-
+                        @role('admin|reviewer')
                           <th><a class="btn btn-secondary" href="post/{{$post->id}}/approve">Approve </a></th>
+                        @endrole
                   </tr>
                 
 @endforeach      
