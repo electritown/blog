@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+<style>.image {
+  position: relative;
+  text-align: center;
+  color: white;
+  height: 10%;
+}
+</style>
+<div id="image"style="fixed: left; width: 50% ">
+        <img class="img" src="/storage/imagespost/{{$post->image}}">
+   </div>
 <div class="container">
         
     <div class="col-md-8"> <h2 class="blog-post-title">{{$post->title}}</h2>
@@ -22,11 +32,9 @@
           @method('delete') 
         <button name="submit"  class="btn btn-danger"> Delete</button>
         </form>
-        </div>
-        <div style="float: left; width: 50%">
-             <img style="border-radius: 10px; width: 100%" src="/storage/imagespost/{{$post->image}}">
-        </div>
-        </div> --}}
+        </div>--}}
+       
+        </div> 
         <br>
     <!-- /.blog-post -->
 

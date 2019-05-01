@@ -1,5 +1,12 @@
 @extends('admin.index')
 
+@section('buttons')
+@section('buttons')
+<a href="{{route('tag.create')}}" class="btn btn-primary">Create Tag</a>
+
+@endsection
+    
+@endsection
 @section('content2')
 
 <div class="table-responsive">
@@ -21,12 +28,9 @@
                           <th>{{$tag->name}}</th>
                           <th>{{$tag->created_at}}</th>
                           <th><a href="tag/{{$tag->id}}" class="btn btn-primary">View</a></th>
-                          <form  action="{{route('tag.destroy' , $tag->id)}}" method="post">                  
                                 @csrf
-                                @method('delete')
                                 <th><a href="/tag/{{$tag->id}}/edit" class="btn btn-primary">Edit</a></th>
-                                <th><button name="submit"  class="btn btn-danger"> Delete</button></th>  
-                                </form>
+                                <th><a href="/tag/{{$tag->id}}/delete"  class="btn btn-danger"> Delete</a></th>  
                         </tr>
                 
 @endforeach      

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +26,7 @@
     <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
 
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -32,79 +34,93 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Red Bricks Blog
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="container">
-                                 
-                
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
 
-                    </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                                    
-                        <!-- Authentication Links -->
-                        @guest
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav mr-auto">
+
+                        </ul>
+
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ml-auto">
+
+                            <!-- Authentication Links -->
+                            @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            
+
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
                             @endif
-                        @else
+                            @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                    @if (\Request::is('admin'))
+                                    
+                                        <button class="dropdown-item" {{\Request::is('/') ? 'disabled':''}}> 
+                                            <a href="{{url('/')}}">Home</a>
+                                        </button>
+
+                                    @endif
+                                    <button class="dropdown-item" 
+                                        {{\Request::is('admin') ? 'disabled':''}}> 
+                                    <a href="{{url('/admin')}}">Dashboard</a></button>
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
-                        @endguest
-                    </ul>
+                            @endguest
+                        </ul>
+                    </div>
                 </div>
-            </div>
         </nav>
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    
 
 
 
-<footer>
-<div class="container">
-  <div class="row">
-  <hr>
-    <div class="col-lg-12">
-      <div class="col-md-8">
-        <a href="#">Terms of Service</a> | <a href="#">Privacy</a>    
-      </div>
-      <div class="col-md-4">
-        <p class="muted pull-right">© 2019 Bloggest Project. All rights reserved</p>
-      </div>
-    </div>
-  </div>
-</div>
-</footer>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <hr>
+                <div class="col-lg-12">
+                    <div class="col-md-8">
+                        <a href="#">Terms of Service</a> | <a href="#">Privacy</a>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="muted pull-right">© 2019 Bloggest Project. All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

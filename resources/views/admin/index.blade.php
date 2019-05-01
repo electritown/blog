@@ -64,7 +64,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{'/user/index'}}">
+            <a class="nav-link" href="{{'/admin/user'}}">
               <span data-feather="users"></span>
               Users
             </a>
@@ -85,7 +85,8 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
         @role('admin|author')
-          <a href="{{route('post.create')}}" class="btn btn-primary">Create Post</a>
+        @yield('buttons')
+
         @endrole
       </div>
       <div class="table-responsive">

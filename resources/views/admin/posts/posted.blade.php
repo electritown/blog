@@ -1,5 +1,9 @@
 @extends('admin.index')
 
+@section('buttons')
+<a href="{{route('post.create')}}" class="btn btn-primary">Create Post</a>
+
+@endsection
 @section('content2')
 
 <div class="table-responsive">
