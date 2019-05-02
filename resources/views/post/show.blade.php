@@ -1,18 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<style>.image {
-  position: relative;
-  text-align: center;
-  color: white;
-  height: 10%;
+<style> 
+.images {
+  padding: 5px;
+  width: 0px;
+}
+#images {
+  padding: 5px;
+  width: 0px; !important
+  height: 0; !important
+
 }
 </style>
-<div id="image"style="fixed: left; width: 50% ">
-        <img class="img" src="/storage/imagespost/{{$post->image}}">
-   </div>
+
 <div class="container">
-        
+        <div class ="images" id="images" width="200" height="40">
+                <img class="img" src="/storage/imagespost/{{$post->image}}">
+           </div>  
     <div class="col-md-8"> <h2 class="blog-post-title">{{$post->title}}</h2>
         <p class="mb-1 text-muted">{{$post->created_at->format('d M Y')}}</p>
         <p class="mb-1 text-muted">Auther: {{$post->user->name}}</p>

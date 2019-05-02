@@ -39,10 +39,12 @@ Route::get('/admin', function () {
 Route::get('/admin/postedposts', 'PostController@postedPosts');
 Route::get('/admin/pendingposts', 'PostController@pendingPosts')->middleware('role:admin|reviewer');
 Route::get('/admin/myposts', 'PostController@myPosts');
+Route::resource('user', 'UsersController');
 Route::resource('admin/user', 'UsersController');
 Route::get('post/{id}/delete', "PostController@destroy");
 Route::get('admin/post/{id}/delete', "PostController@destroy");
 Route::get('tag/{id}/delete', "TagController@destroy");
 Route::get('admin/tag/{id}/delete', "TagController@destroy");
+Route::post('users/add','UserController@store')->name('add_user');
 
 

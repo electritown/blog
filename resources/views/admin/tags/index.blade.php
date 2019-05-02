@@ -1,12 +1,13 @@
 @extends('admin.index')
 
-@section('buttons')
+@section('Title')
+     Tags Control
+@endsection
 @section('buttons')
 <a href="{{route('tag.create')}}" class="btn btn-primary">Create Tag</a>
 
 @endsection
-    
-@endsection
+
 @section('content2')
 
 <div class="table-responsive">

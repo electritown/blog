@@ -1,5 +1,7 @@
 @extends('admin.index')
-
+@section('Title')
+    My Posts
+@endsection
 @section('buttons')
 <a href="{{route('post.create')}}" class="btn btn-primary">Create Post</a>
 
