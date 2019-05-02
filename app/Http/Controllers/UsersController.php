@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Role;
 
 class UsersController extends Controller
 {
@@ -16,7 +17,7 @@ class UsersController extends Controller
     public function index()
     {
         $users=User::orderBy('created_at','desc')->get();
-        return view('user.index')->with('users',$users);
+        return view('admin.users.index')->with('users',$users);
     }
 
     /**
@@ -26,7 +27,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $roles= Role::all();
+        return view('admin.users.create')->withRoles($roles);
     }
 
     /**
@@ -40,7 +42,7 @@ class UsersController extends Controller
         $request->validate([
             'name'=>'required',
             'email'=>'required',
-            'password'=>'required'
+            'password'=>'required',
         ]);
         $password = $request->password;
     
@@ -49,8 +51,9 @@ class UsersController extends Controller
             'email'=>$request->get('email'),
             'password'=>bcrypt($password),
         ]);
+        $user->roles()->sync($request->role);
         $user->save(); 
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index');
     }
 
     /**

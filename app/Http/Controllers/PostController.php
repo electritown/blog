@@ -93,7 +93,7 @@ class PostController extends Controller
             } else {
                 $post->tags()->sync(array());
             }
-            return redirect('/admin');
+            return redirect('/admin');  
 }
     /**
      * Display the specified resource.
@@ -170,10 +170,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect(Request::url());
+        return back();
     }
 }

@@ -1,8 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+<style> 
+.images {
+  padding: 5px;
+  width: 0px;
+}
+#images {
+  padding: 5px;
+  width: 0px; !important
+  height: 0; !important
+
+}
+</style>
+
 <div class="container">
-        
+        <div class ="images" id="images" width="200" height="40">
+                <img class="img" src="/storage/imagespost/{{$post->image}}">
+           </div>  
     <div class="col-md-8"> <h2 class="blog-post-title">{{$post->title}}</h2>
         <p class="mb-1 text-muted">{{$post->created_at->format('d M Y')}}</p>
         <p class="mb-1 text-muted">Auther: {{$post->user->name}}</p>
@@ -22,11 +37,9 @@
           @method('delete') 
         <button name="submit"  class="btn btn-danger"> Delete</button>
         </form>
-        </div>
-        <div style="float: left; width: 50%">
-             <img style="border-radius: 10px; width: 100%" src="/storage/imagespost/{{$post->image}}">
-        </div>
-        </div> --}}
+        </div>--}}
+       
+        </div> 
         <br>
     <!-- /.blog-post -->
 

@@ -33,9 +33,13 @@ class HomeController extends Controller
         // $permission =Permission::create(['name' => 'publish post']);
         // $permission =Permission::create(['name' => 'delete post']);
         // $permission =Permission::create(['name' => 'add comment']);
+<<<<<<< HEAD
         // $role =Role::findById(1);
         // $permission = permission::findById(2);
         // $role->givePermissionTo($permission);
+=======
+        $role =Role::findById(3);
+>>>>>>> 516ce7d814ae1c8aa956ada20f5bbf361f6ffc28
         //auth()->user()->assignRole('author');
         return view('home');
     }

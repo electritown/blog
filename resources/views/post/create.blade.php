@@ -8,6 +8,8 @@
 </script>
 
 
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -19,8 +21,17 @@
                         <div class="form-group">
                             @csrf
                             <label class="label">Post Title: </label>
-                            <input type="text" name="title" class="form-control" required/>
+                            <input type="text" name="title" class="form-control" required />
                         </div>
+                        <div class="form-group"> <label class="label" name="tags">Tags:</label>
+                            <select id="tag" class="form-control" name="tag[]" multiple="multiple">
+                                @foreach($tags as $tag)
+                                <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label class="label">Post Body:</label>
                             <textarea name="body" rows="10" cols="30" class="form-control" required>Body</textarea>
@@ -30,19 +41,11 @@
                             <label class="label" name="imagespost">Upload Image:</label>
                             <input name="imagespost" type="file" class="form-control-file">
                         </div>
-                        <div class="form-group">                        <label class="label" name="tags">Tags:</label>
-                        <select id="tag" class="form-control" name="tag[]" multiple="multiple">
-                    @foreach($tags as $tag)
-                        <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
-                    @endforeach
 
-                </select>
-            </div>
-
-                <div class="form-group">   <input type="submit" class="btn btn-success" value="Create post"></div>
+                        <div class="form-group"> <input type="submit" class="btn btn-success" value="Create post"></div>
                     </form>
 
-             </div>
+                </div>
             </div>
         </div>
     </div>
