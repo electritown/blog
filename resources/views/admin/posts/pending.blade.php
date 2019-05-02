@@ -16,7 +16,9 @@
                     <th>Post Name</th>
                     <th>Created At</th>
                     <th>Tags</th>
+                    @role('admin')
                     <th>Delete Button</th>
+                    @endrole
                     <th>Show Button</th>
                     <th>Approve Button</th>
             </tr>

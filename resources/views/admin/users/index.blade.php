@@ -1,7 +1,4 @@
 @extends('admin.index')
-@section('Title')
-    Users
-@endsection
 @section('content2')
 
     <table class="table table-dark">

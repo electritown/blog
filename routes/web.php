@@ -45,6 +45,6 @@ Route::get('post/{id}/delete', "PostController@destroy");
 Route::get('admin/post/{id}/delete', "PostController@destroy");
 Route::get('tag/{id}/delete', "TagController@destroy");
 Route::get('admin/tag/{id}/delete', "TagController@destroy");
-Route::post('users/add','UserController@store')->name('add_user');
+Route::any('posts/filter','PostController@filter')->name('Filter');
 
 

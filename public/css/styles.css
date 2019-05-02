@@ -13,7 +13,17 @@
 .blog-header-logo:hover {
     text-decoration: none;
 }
+ 
+.img {
+  padding: 5px; !ipm
+  width: 0px; !important
+}
+#img {
+  padding: 5px;
+  width: 0px; !important
+  height: 0; !important
 
+}
 h1,
 h2,
 h3,

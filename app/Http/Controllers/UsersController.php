@@ -51,9 +51,10 @@ class UsersController extends Controller
             'email'=>$request->get('email'),
             'password'=>bcrypt($password),
         ]);
-        $user->roles()->sync($request->role);
         $user->save(); 
-        return redirect()->route('admin.user.index');
+
+        $user->roles()->attach($request->role);
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -100,7 +101,7 @@ class UsersController extends Controller
             $user->name = $request->input('name');
             $user->email = $request->input('email');    
             $user->save();
-            return redirect('/');
+            return redirect('/admin');
     }
 
     /**

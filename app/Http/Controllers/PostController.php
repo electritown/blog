@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Tag;
-use image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,24 +17,26 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts=Post::orderBy('created_at','desc')->get();
-        return view('post.index')->with('posts',$posts);
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        $tags = Tag::orderBy('created_at', 'desc')->get();
+        return view('post.index')->with('posts', $posts)->with('tags', $tags);
     }
-    public function postedPosts(){
-        $posts=Post::where('isposted','=',1)->orderBy('created_at','desc')->get();
-        return view('admin.posts.posted')->with('posts',$posts);
+    public function postedPosts()
+    {
+        $posts = Post::where('isposted', '=', 1)->orderBy('created_at', 'desc')->get();
+        return view('admin.posts.posted')->with('posts', $posts);
     }
 
-    public function pendingPosts(){
-        $posts=Post::where('ispending','=',1)->orderBy('created_at','desc')->get();
-        return view('admin.posts.pending')->with('posts',$posts);
+    public function pendingPosts()
+    {
+        $posts = Post::where('ispending', '=', 1)->orderBy('created_at', 'desc')->get();
+        return view('admin.posts.pending')->with('posts', $posts);
     }
-    public function myPosts(Request $request){
-        $id=Auth::user()->id;
-        $posts=Post::where('user_id','=',$id)->orderBy('created_at','desc')->get();
-        return view('admin.posts.myposts')->with('posts',$posts);
-
-
+    public function myPosts(Request $request)
+    {
+        $id = Auth::user()->id;
+        $posts = Post::where('user_id', '=', $id)->orderBy('created_at', 'desc')->get();
+        return view('admin.posts.myposts')->with('posts', $posts);
     }
     /**
      * Show the form for creating a new resource.
@@ -44,12 +45,12 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-        
 
-           
+
+
         $tags = Tag::all();
         return view('post.create')->withTags($tags);
-  }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -60,41 +61,41 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'body'=>'required',
-           // 'iamgespost'=>'image|nullable|max:1999'
+            'title' => 'required',
+            'body' => 'required',
+            // 'iamgespost'=>'image|nullable|max:1999'
         ]);
         $id = \Auth::user()->id;
 
         $post = new Post;
-            $post->title = $request->title;
-            $post->body = $request->body;
-            $post->user_id = $id;
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->user_id = $id;
 
-            //return var_dump($request->has("imagespost"));
-        if($request->has('imagespost')){
-            	$image = $request->file('imagespost')->getClientOriginalName();
-            	//$filename = time() . '.' . $image->getClientOriginalExtension();
-            	$location = pathinfo($image, PATHINFO_FILENAME);
-            	$ext = $request->file('imagespost')->guessClientExtension();
-            	$filename = time().'.'.$ext;
-            	$path= $request->file('imagespost')->storeAs('public/imagespost', $filename );
-            	//Image::make($image)->save($location);
-            	//$post->image = $filename;
-            
-            }    
-            
-          $post->image = $filename;
+        //return var_dump($request->has("imagespost"));
+        if ($request->has('imagespost')) {
+            $image = $request->file('imagespost')->getClientOriginalName();
+            //$filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = pathinfo($image, PATHINFO_FILENAME);
+            $ext = $request->file('imagespost')->guessClientExtension();
+            $filename = time() . '.' . $ext;
+            $path = $request->file('imagespost')->storeAs('public/imagespost', $filename);
+            //Image::make($image)->save($location);
+            //$post->image = $filename;
 
-            $post->save();
-        
+        }
+
+        $post->image = $filename;
+
+        $post->save();
+
         if (isset($request->tag)) {
             $post->tags()->sync($request->tag);
-            } else {
-                $post->tags()->sync(array());
-            }
-            return redirect('/admin');  
-}
+        } else {
+            $post->tags()->sync(array());
+        }
+        return redirect('/admin');
+    }
     /**
      * Display the specified resource.
      *
@@ -104,8 +105,10 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-
-        return view('post.show')->with('post',$post);
+        if ($post)
+            return view('post.show')->with('post', $post);
+        else
+            abort(404);
     }
 
     /**
@@ -114,13 +117,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $post = Post::find($id);
-
-        return view('post.edit')->with('post',$post);
+        if ($post)
+            return view('post.edit')->with('post', $post);
+        else abort(404);
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -132,38 +136,39 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title'=>'required',
-            'body'=>'required']);
-        
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         $post = Post::find($id);
-            $post->title = $request->input('title');
-            $post->body = $request->input('body');    
-            $post->save();
-            return redirect('/');
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->save();
+        return redirect('/');
     }
     public function approve($id)
     {
-    
+
         Post::where([
-            'id'=>$id
+            'id' => $id
         ])->update([
-            'ispending'=>0,
-            'isposted'=>1
+            'ispending' => 0,
+            'isposted' => 1
         ]);
         return redirect('/admin');
     }
-    public function hide($id){
+    public function hide($id)
+    {
 
         Post::where([
-            'id'=>$id
+            'id' => $id
         ])->update([
-            'ispending'=>1,
-            'isposted'=>0
+            'ispending' => 1,
+            'isposted' => 0
         ]);
-      return  redirect('/admin');
-
+        return  redirect('/admin');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -175,5 +180,14 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->delete();
         return back();
+    }
+    public function filter(Request $request)
+    {
+        
+            $posts = Post::whereDate('created_at', '>=', $request->startDate)
+                ->whereDate('created_at', '<=', $request->endDate)
+                ->get();
+        
+        return view('post.filter')->with('posts', $posts);
     }
 }
