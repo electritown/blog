@@ -24,7 +24,7 @@
                           <form  action="{{route('post.destroy' , $post->id)}}" method="post">                  
                                 @csrf
                                 @method('delete')
-                                @role('admin')
+                                @role('admin|reviewer')
                                    <th><button class="btn btn-danger" name="submit">Delete</button></th>
                                 @endrole
                         </form>
